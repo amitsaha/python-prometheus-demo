@@ -1,0 +1,48 @@
+# Based of https://github.com/vegasbrianc/prometheus
+version: '2'
+
+volumes:
+    prometheus_data: {}
+    grafana_data: {}
+
+networks:
+  front-tier:
+    driver: bridge
+  back-tier:
+    driver: bridge
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    volumes:
+      - ./prometheus/:/etc/prometheus/
+      - prometheus_data:/prometheus
+    command:
+      - '-config.file=/etc/prometheus/prometheus.yml'
+      - '-storage.local.path=/prometheus'
+    expose:
+      - 9090
+    ports:
+      - 9090:9090
+    networks:
+      - back-tier
+  node-exporter:
+    image: prom/node-exporter
+    expose:
+      - 9100
+    networks:
+      - back-tier
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - config.monitoring
+    networks:
+      - back-tier
+      - front-tier
