@@ -12,8 +12,6 @@ services:
     expose:
       - 9125
       - 9102
-    ports:
-      - "9102:9102"
   prometheus:
     image: prom/prometheus
     container_name: prometheus
