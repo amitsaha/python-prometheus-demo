@@ -2,7 +2,7 @@ from flask import Flask, request, Response
 from flask_datadog import StatsD
 
 app = Flask(__name__)
-app.config['STATSD_HOST'] =  "statsd"
+app.config['STATSD_HOST'] =  "statsd-exporter"
 app.config['STATSD_PORT'] = 9125
 statsd = StatsD(app)
 
