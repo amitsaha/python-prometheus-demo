@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  webapp:
+    image: amitsaha/flask_app_statsd
+    container_name: webapp 
+    expose:
+      - 5000
+    ports:
+      - 5000:5000
