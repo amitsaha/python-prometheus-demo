@@ -3,7 +3,6 @@ version: '2'
 
 volumes:
     prometheus_data: {}
-    grafana_data: {}
 
 services:
   prometheus:
@@ -23,14 +22,3 @@ services:
     image: prom/node-exporter
     expose:
       - 9100
-  grafana:
-    image: grafana/grafana
-    depends_on:
-      - prometheus
-    ports:
-      - 3000:3000
-    volumes:
-      - grafana_data:/var/lib/grafana
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=foobar
-      - GF_USERS_ALLOW_SIGN_UP=false
