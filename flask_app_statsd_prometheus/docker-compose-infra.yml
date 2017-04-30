@@ -8,7 +8,7 @@ volumes:
 services:
   stastd:
     image: prom/statsd-exporter
-    container_name: statsd-exporter
+    container_name: statsd
     expose:
       - 9125
       - 9102

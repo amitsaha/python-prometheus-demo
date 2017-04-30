@@ -31,4 +31,4 @@ scrape_configs:
     # metrics_path defaults to '/metrics'
     # scheme defaults to 'http'.
     static_configs:
-        - targets: ['statsd-exporter:9102']
+        - targets: ['statsd:9102']

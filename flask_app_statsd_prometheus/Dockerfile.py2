@@ -7,8 +7,8 @@ RUN set -e; \
 		libc-dev \
 		linux-headers \
 	; \
-	pip install -r requirements.txt; \
+	pip install -r src/requirements.txt; \
 	apk del .build-deps;
 EXPOSE 5000
-RUN python --version
+VOLUME /application
 CMD uwsgi --http :5000  --manage-script-name --mount /myapplication=flask_app:app --enable-threads --processes 5
