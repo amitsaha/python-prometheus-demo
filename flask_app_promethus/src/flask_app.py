@@ -21,7 +21,7 @@ def test1():
 def handle_500(error):
     return str(error), 500
 
-@app.route('/metrics/')
+@app.route('/metrics')
 def metrics():
     return Response(prometheus_client.generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
