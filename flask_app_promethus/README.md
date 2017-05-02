@@ -45,7 +45,7 @@ $ docker run  -ti -p 5000:5000 -v `pwd`/src:/application amitsaha/flask_app
 ## Bringing up the web application, along with prometheus
 
 The [docker-compse.yml](docker-compose.yml) brings up the `webapp` service which is our web application
-using the image `amitsaha/flask_app` we built above. The [`docker-compose-infra.yml](docker-compose-infra.yml)
+using the image `amitsaha/flask_app` we built above. The [docker-compose-infra.yml](docker-compose-infra.yml)
 file brings up the `statsd` service which is the statsd exporter, `prometheus` service and also starts the `grafana` service which
 is available on port 3000. The config directory contains a `prometheus.yml` file
 which sets up the targets for prometheus to scrape. The scrape configuration 
