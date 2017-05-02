@@ -19,10 +19,6 @@ services:
       - 9090
     ports:
       - 9090:9090
-  node-exporter:
-    image: prom/node-exporter
-    expose:
-      - 9100
   grafana:
     image: grafana/grafana
     depends_on:
