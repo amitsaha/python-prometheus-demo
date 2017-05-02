@@ -76,7 +76,7 @@ scrape_configs:
     static_configs:
         - targets: ['statsd:9102']
 
-``
+```
 
 Prometheus scrapes itself, which is the first target above. The second target
 is the statsd exporter on port 9102.
