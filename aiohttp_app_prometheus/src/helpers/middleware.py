@@ -1,4 +1,5 @@
 from prometheus_client import Counter, Gauge, Histogram
+import prometheus_client
 import time
 import asyncio
 
@@ -37,8 +38,14 @@ def prom_middleware(app_name):
       return middleware_handler
   return factory
 
+async def metrics(request):
+    resp = web.Response(body=prometheus_client.generate_latest())
+    resp.content_type = prometheus_client.CONTENT_TYPE_LATEST
+    return resp
+
 def setup_metrics(app, app_name):
   app.middlewares.insert(0, prom_middleware(app_name))
+  app.router.add_get("/metrics", metrics)
 
 @asyncio.coroutine
 def error_middleware(app, handler):
@@ -48,10 +55,11 @@ def error_middleware(app, handler):
         try:
             response = yield from handler(request)
             return response
-        except Exception as ex:
-            resp = web.Response(body=str(ex), status=500)
-            return resp
         except web.HTTPException as ex:
             resp = web.Response(body=str(ex), status=ex.status)
             return resp
+        except Exception as ex:
+            resp = web.Response(body=str(ex), status=500)
+            return resp
+
     return middleware_handler
