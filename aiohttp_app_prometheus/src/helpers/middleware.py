@@ -1,4 +1,4 @@
-from prometheus_client import Counter, Gauge, Histogram
+from prometheus_client import Counter, Gauge, Histogram, CONTENT_TYPE_LATEST
 import prometheus_client
 import time
 import asyncio
