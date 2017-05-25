@@ -2,11 +2,11 @@ version: '2'
 
 services:
   webapp:
-    image: amitsaha/flask_app
+    image: amitsaha/aiohttp_app1
     container_name: webapp 
     expose:
-      - 5000
+      - 8080 
     ports:
-      - 5000:5000
+        - 8080:8080
     volumes:
       - ./src:/application
