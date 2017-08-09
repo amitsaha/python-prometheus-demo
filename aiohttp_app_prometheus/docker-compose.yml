@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  webapp:
+    image: amitsaha/aiohttp_app1
+    container_name: webapp 
+    expose:
+      - 8080 
+    ports:
+        - 8080:8080
+    volumes:
+      - ./src:/application
