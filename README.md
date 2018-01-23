@@ -1,6 +1,6 @@
 # Python + Prometheus Demo
 
-## Contents
+## Demos based on codeship blog posts
 
 The following two applications are discussed in the [first blog post](https://t.co/7mUox6RZas):
 
@@ -17,3 +17,9 @@ The [second blog post](https://t.co/AmQn2rxetI) refers to the next application:
 ### [aiohttp_app_prometheus](https://github.com/amitsaha/python-prometheus-demo/tree/master/aiohttp_app_prometheus)
 
 An aiohttp application with prometheus integeration.
+
+## Extension
+
+### [flask_app_prometheus_worker_id](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_worker_id)
+
+
