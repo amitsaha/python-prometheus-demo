@@ -9,8 +9,7 @@ However, this doesn't completely solve the problem of having
 inconsistent value for a metric depending on which worker responds
 to the HTTP request from prometheus. 
 
-To explain what I mean - let's say we have a counter metric
-- `request_count`. This is the number of requests served by the
+To explain what I mean - let's say we have a counter metric `request_count`. This is the number of requests served by the
 web application. Now consider, two time windows: `t1-t2` and `t2-t3`.
 Ideally, if we have N workers, requests to our web application will
 be served such that requests over a time window are equally distributed
