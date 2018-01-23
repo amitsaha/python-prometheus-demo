@@ -22,4 +22,6 @@ An aiohttp application with prometheus integeration.
 
 ### [flask_app_prometheus_worker_id](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_worker_id)
 
+### [flask_app_prometheus_multiprocessing](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_multiprocessing)
+
 
