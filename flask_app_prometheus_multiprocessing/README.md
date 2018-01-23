@@ -12,6 +12,9 @@ def child_exit(server, worker):
 However, I still see metrics being inconsistent with Python 2 and
 Python 3. So, doesn't work yet!
 
+And then, I came across [this issue](https://github.com/korfuri/django-prometheus/issues/12) and adding `--lazy` to `uwsgi` seems ot have
+fixed it!
+
 
 ## Building Docker image
 
