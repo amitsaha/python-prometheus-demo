@@ -6,8 +6,11 @@ See ``src`` for the application code. The difference from [flask_app_prometheus]
 from prometheus_client import multiprocess
 
 def child_exit(server, worker):
-    multiprocess.mark_process_dead(worker.pid)<Paste>
+    multiprocess.mark_process_dead(worker.pid)
 ```
+
+However, I still see metrics being inconsistent with Python 2 and
+Python 3.
 
 ## Building Docker image
 
