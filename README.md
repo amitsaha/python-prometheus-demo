@@ -18,7 +18,7 @@ The [second blog post](https://t.co/AmQn2rxetI) refers to the next application:
 
 An aiohttp application with prometheus integeration.
 
-## Extension
+## Attempts to get native prometheus export working
 
 ### [flask_app_prometheus_worker_id](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_worker_id)
 
