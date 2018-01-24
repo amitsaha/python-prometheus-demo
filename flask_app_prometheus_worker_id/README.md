@@ -5,26 +5,6 @@ See ``src`` for the application code. The difference from [flask_app_prometheus]
 under `uwsgi` or `gunicorn`, the label will make each scrape that
 is answered by a different worker an entirely different metric. 
 
-However, this doesn't completely solve the problem of having 
-inconsistent value for a metric depending on which worker responds
-to the HTTP request from prometheus. 
-
-To explain what I mean - let's say we have a counter metric `request_count`. This is the number of requests served by the
-web application. Now consider, two time windows: `t1-t2` and `t2-t3`.
-Ideally, if we have N workers, requests to our web application will
-be served such that requests over a time window are equally distributed
-among the N workers. However, that *may* eventually be true over
-a large number of requests. However, there's nothing preventing a
-single worker serving all 100 requests in the time window `t1-t2`
-and a different worker serving all 50 requests in the time window
-`t2-t3`. If you now do `sum(request_count) by (instance)` (for example)
-you will see the value of the counter as decreasing.
-
-
-In addition, this leads to a proliferation of metrics: 
-for a single metric we now have `# of workers x metric` number of 
-metrics per application instance. 
-
 
 ## Building Docker image
 
