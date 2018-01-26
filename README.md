@@ -20,6 +20,8 @@ An aiohttp application with prometheus integeration.
 
 ## Attempts to get native prometheus export working
 
+See [blog post](http://echorand.me/your-options-for-monitoring-multi-process-python-applications-with-prometheus.html)
+
 ### [flask_app_prometheus_worker_id](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_worker_id)
 
 ### [flask_app_prometheus_multiprocessing](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus_multiprocessing)
