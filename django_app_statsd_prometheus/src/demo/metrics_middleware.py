@@ -1,5 +1,12 @@
 import time
-# FIXME: integrate with datadogpy
+from datadog import DogStatsd
+import time
+import sys
+
+
+statsd = DogStatsd(host="statsd", port=9125)
+REQUEST_LATENCY_METRIC_NAME = 'request_latency_seconds'
+REQUEST_COUNT_METRIC_NAME = 'request_count'
 
 class StatsdReporter():
 
@@ -12,7 +19,20 @@ class StatsdReporter():
         #FIXME: https://docs.djangoproject.com/en/2.2/ref/request-response/
         print("Statsd middleware: request {0} {1}".format(request.path_info, request.method))
         if response:
-            request_time = time.time() - request.start_time
-            print("Statsd middleware: request {0} {1} took {2} seconds (HTTP response: {3})".format(request.path_info, request.method, request_time, response.status_code))
-        import sys; sys.stdout.flush()
+            resp_time = time.time() - request.start_time
+            statsd.histogram(REQUEST_LATENCY_METRIC_NAME,
+                resp_time,
+                tags=[
+                    'service:webapp',
+                    'endpoint: %s' % request.path_info,
+                ]
+            )
+            statsd.increment(REQUEST_COUNT_METRIC_NAME,
+                tags=[
+                    'service: webapp', 
+                    'method: %s' % request.method, 
+                    'endpoint: %s' % request.path_info,
+                    'status: %s' % str(response.status_code)
+                ]
+            )
         return response

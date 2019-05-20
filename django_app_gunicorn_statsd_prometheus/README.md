@@ -1,8 +1,8 @@
 # Example Django application
 
-See ``src`` for the application code.
+See `src` for the application code and top level README for the description of this repo from a functionality
+point of view.
 
-helpful inks: https://medium.com/@damianmyerscough/monitoring-gunicorn-with-prometheus-789954150069
 
 ## Building Docker image
 
@@ -11,7 +11,7 @@ and expects the application source code to be volume mounted at `/application`
 when run:
 
 ```
-FROM python:3.6.1-alpine
+FROM python:3.7-alpine
 ADD . /application
 WORKDIR /application
 RUN set -e; \
@@ -22,18 +22,19 @@ RUN set -e; \
 	; \
 	pip install -r src/requirements.txt; \
 	apk del .build-deps;
-EXPOSE 5000
+EXPOSE 8000
 VOLUME /application
-CMD uwsgi --http :5000  --manage-script-name --mount /myapplication=flask_app_1:app --enable-threads --processes 5
+
+CMD gunicorn --bind 0.0.0.0:8000  demo.wsgi
 ```
 
-The last statement shows how we are running the application via `uwsgi` with 5
+The last statement shows how we are running the application via `gunicorn` with 5
 worker processes.
 
 To build the image:
 
 ```
-$ docker build -t amitsaha/flask_app_1 -f Dockerfile.py3 .
+$ docker build -t amitsaha/django_app_1 -f Dockerfile.py3 .
 ```
 
 ## Running the application
@@ -41,7 +42,7 @@ $ docker build -t amitsaha/flask_app_1 -f Dockerfile.py3 .
 We can just run the web application as follows:
 
 ```
-$ docker run  -ti -p 5000:5000 -v `pwd`/src:/application amitsaha/flask_app_1
+$ docker run  -ti -p 8000:8000 -v `pwd`/src:/application amitsaha/django_app_1
 ```
 
 ## Bringing up the web application, along with prometheus

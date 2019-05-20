@@ -1,6 +1,7 @@
 # Example Django application
 
-See `src` for the application code.
+See `src` for the application code and top level README for the description of this repo from a functionality
+point of view.
 
 
 ## Building Docker image
