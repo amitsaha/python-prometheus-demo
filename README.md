@@ -18,6 +18,19 @@ The [second blog post](https://t.co/AmQn2rxetI) refers to the next application:
 
 An aiohttp application with prometheus integeration.
 
+## Django web application + statsd -> Prometheus
+
+### [django_app_statsd_prometheus](./django_app_statsd_prometheus)
+
+This demo demonstrates how we can push HTTP metrics from a Django application into statsd exporter
+which is then scraped by prometheus.
+
+### [django_app_gunicorn_statsd_prometheus](./django_app_gunicorn_statsd_prometheus)
+
+This demo demonstrates howe can push statsd metrics from gunicorn running a django application.
+I learned about this approach from this [blog post](https://medium.com/@damianmyerscough/monitoring-gunicorn-with-prometheus-789954150069).
+
+
 ## Attempts to get native prometheus export working
 
 See [blog post](http://echorand.me/your-options-for-monitoring-multi-process-python-applications-with-prometheus.html)
