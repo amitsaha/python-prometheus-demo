@@ -12,4 +12,4 @@ RUN set -e; \
 EXPOSE 8000
 VOLUME /application
 
-CMD gunicorn --bind 0.0.0.0:8000  demo.wsgi
+CMD gunicorn --workers 5 --bind 0.0.0.0:8000  demo.wsgi

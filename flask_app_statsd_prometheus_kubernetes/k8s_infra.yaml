@@ -1,0 +1,102 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: statsd
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: statsd
+    spec:
+      containers:
+      - name: statsd
+        image: prom/statsd-exporter
+        env:
+        - name: AUTHOR
+          value: app1
+        ports:
+        - containerPort: 9125
+        - containerPort: 9102
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: statsd
+spec:
+  ports:
+  - port: 9125
+    protocol: UDP
+    targetPort: 9125
+    name: ingest
+  - port: 9102
+    protocol: TCP
+    targetPort: 9102
+    name: exporter
+  selector:
+    app: statsd
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - name: prometheus
+        image: amitsaha/prometheus
+        env:
+        - name: AUTHOR
+          value: app1
+        ports:
+        - containerPort: 9090
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheussvc
+spec:
+  ports:
+  - port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: prometheus
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana/grafana:5.4.2
+        env:
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          value: admin
+        ports:
+        - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafanasvc
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: grafana
