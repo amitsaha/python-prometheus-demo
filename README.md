@@ -2,7 +2,7 @@
 
 ## Demos based on codeship blog posts
 
-The following two applications are discussed in the [first blog post](https://t.co/7mUox6RZas):
+The following two applications are discussed in the [first blog post](https://www.cloudbees.com/blog/monitoring-your-synchronous-python-web-applications-using-prometheus?utm_content=58060028&utm_medium=social&utm_source=twitter):
 
 ### [flask_app_prometheus](https://github.com/amitsaha/python-prometheus-demo/tree/master/flask_app_prometheus)
 
