@@ -12,7 +12,7 @@ A Flask application using the native Prometheus Python client to expose metrics 
 
 A Flask application which pushes the metrics to a `statsd` bridge which converts `DogStatsd` metrics to `Prometheus` compatible metrics.
 
-The [second blog post](https://t.co/AmQn2rxetI) refers to the next application:
+The [second blog post](https://www.cloudbees.com/blog/monitoring-your-asynchronous-python-web-applications-using-prometheus?utm_content=58777682&utm_medium=social&utm_source=twitter) refers to the next application:
 
 ### [aiohttp_app_prometheus](https://github.com/amitsaha/python-prometheus-demo/tree/master/aiohttp_app_prometheus)
 
